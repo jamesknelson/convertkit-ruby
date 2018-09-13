@@ -8,6 +8,7 @@ module Convertkit
       def add_subscriber_to_tag(tag_id, email, options = {})
         response = connection.post("tags/#{tag_id}/subscribe") do |f|
           f.params['email'] = email
+          f.params['state'] = 'active'
           f.params['first_name'] = options[:first_name]
           f.params['fields'] = options[:fields]
           f.params['tags'] = options[:tags]
