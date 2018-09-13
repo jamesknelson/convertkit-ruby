@@ -4,6 +4,7 @@ require "convertkit/client/forms"
 require "convertkit/client/sequences"
 require "convertkit/client/subscribers"
 require "convertkit/client/tags"
+require "convertkit/client/webhooks"
 require "convertkit/connection"
 
 module Convertkit
@@ -14,6 +15,7 @@ module Convertkit
     include Sequences
     include Subscribers
     include Tags
+    include Webhooks
 
     attr_accessor :api_secret, :api_key
 

@@ -2,16 +2,24 @@ module Convertkit
   class Client
     module Tags
       def tags
-        connection.get("tags")
+        connection.get("tags").body
       end
 
       def add_subscriber_to_tag(tag_id, email, options = {})
-        connection.post("tags/#{tag_id}/subscribe") do |f|
+        response = connection.post("tags/#{tag_id}/subscribe") do |f|
           f.params['email'] = email
           f.params['first_name'] = options[:first_name]
           f.params['fields'] = options[:fields]
           f.params['tags'] = options[:tags]
         end
+        response.body
+      end
+
+      def add_subscriber_to_tag(tag_id, email)
+        response = connection.post("tags/#{tag_id}/unsubscribe") do |f|
+          f.params['email'] = email
+        end
+        response.body
       end
 
       def create_tag(tag_name)
