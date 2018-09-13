@@ -15,7 +15,7 @@ module Convertkit
         response.body
       end
 
-      def add_subscriber_to_tag(tag_id, email)
+      def remove_subscriber_from_tag(tag_id, email)
         response = connection.post("tags/#{tag_id}/unsubscribe") do |f|
           f.params['email'] = email
         end
